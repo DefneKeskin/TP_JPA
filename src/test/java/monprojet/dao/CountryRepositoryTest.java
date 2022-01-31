@@ -41,4 +41,29 @@ public class CountryRepositoryTest {
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
 
+    @Test
+    @Sql("test-data.sql")
+    void populationParPays(){
+        log.info("On teste la population par pays");
+        int populationTotal=27;
+        assertEquals(populationTotal,28,"Le calcul doit égal à 27" );
+        //assertEquals (populationTotal,countryDAO.populationParPays(1),"Le calcul doit égal à 27" );
+    }
+
+    
+    @Test
+    void ListNomPopulationParPays(){
+        List<Tuple> maList = countryDAO.ListNomPopulationParPays();
+        assertEquals(12+15,maList.get(0).get(1));
+        //FRANCE
+        assertEquals(18,maList.get(1).get(1));
+        //LONDRES
+        assertEquals(27,maList.get(1).get(1));
+        //NEW-YORK
+
+    }
+
+
+
+
 }
