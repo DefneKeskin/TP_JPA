@@ -1,4 +1,8 @@
+
+
 package monprojet.dao;
+import java.util.*;
+import javax.persistence.Tuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -42,28 +46,24 @@ public class CountryRepositoryTest {
     }
 
     @Test
-    @Sql("test-data.sql")
-    void populationParPays(){
-        log.info("On teste la population par pays");
-        int populationTotal=27;
-        assertEquals(populationTotal,28,"Le calcul doit égal à 27" );
-        //assertEquals (populationTotal,countryDAO.populationParPays(1),"Le calcul doit égal à 27" );
+    void populationParPaysTest(){
+        int populationTotal = 12+15;
+        //int popFonction = countryDAO.populationParPays(1);
+        assertEquals(populationTotal, countryDAO.populationParPays(1),"Le resultat doit être 27");
     }
 
-    
     @Test
-    void ListNomPopulationParPays(){
-        List<Tuple> maList = countryDAO.ListNomPopulationParPays();
-        assertEquals(12+15,maList.get(0).get(1));
+    void ListNomPopulationParPaysTest(){
+        List<Tuple> maListe = countryDAO.ListNomPopulationParPays();
+        assertEquals(12+15, maListe.get(0).get(1));
         //FRANCE
-        assertEquals(18,maList.get(1).get(1));
-        //LONDRES
-        assertEquals(27,maList.get(1).get(1));
-        //NEW-YORK
-
+        assertEquals(18, maListe.get(1).get(1));
+        //UK
+        assertEquals(27, maListe.get(2).get(1));
+        //US
     }
-
-
-
 
 }
+
+
+
